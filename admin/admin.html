@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sweet Delights - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <header class="admin-header">
+        <div>
+            <h1>🍰 Sweet Delights</h1>
+            <p>Admin Dashboard</p>
+        </div>
+
+        <button id="logoutBtn">Logout</button>
+    </header>
+
+
+    <main class="dashboard">
+
+        <section class="welcome">
+            <h2>Welcome, Admin 👋</h2>
+            <p>Manage your bakery website from one place.</p>
+        </section>
+
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>🍰</span>
+                <h3 id="productCount">0</h3>
+                <p>Products</p>
+            </div>
+
+            <div class="stat-card">
+                <span>🛒</span>
+                <h3 id="orderCount">0</h3>
+                <p>Orders</p>
+            </div>
+
+            <div class="stat-card">
+                <span>👥</span>
+                <h3 id="userCount">0</h3>
+                <p>Users</p>
+            </div>
+
+            <div class="stat-card">
+                <span>⭐</span>
+                <h3 id="reviewCount">0</h3>
+                <p>Reviews</p>
+            </div>
+
+        </section>
+
+
+        <section class="admin-menu">
+
+            <a href="products.html" class="menu-card">
+                <span>🍰</span>
+                <h3>Products</h3>
+                <p>Add, edit and delete bakery products.</p>
+            </a>
+
+            <a href="orders.html" class="menu-card">
+                <span>🛍️</span>
+                <h3>Orders</h3>
+                <p>View and manage customer orders.</p>
+            </a>
+
+            <a href="users.html" class="menu-card">
+                <span>👥</span>
+                <h3>Users</h3>
+                <p>Manage registered customers.</p>
+            </a>
+
+            <a href="reviews.html" class="menu-card">
+                <span>⭐</span>
+                <h3>Reviews</h3>
+                <p>View and manage customer reviews.</p>
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Contact - Sweet Delights</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background: #fff7f9;
+
+            margin: 0;
+        }
+
+        header {
+            background: #8b3a62;
+
+            color: white;
+
+            padding: 20px 40px;
+        }
+
+        .contact {
+
+            max-width: 800px;
+
+            margin: 40px auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+        }
+
+        input,
+        textarea {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin: 8px 0 18px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+        }
+
+        button {
+
+            background: #8b3a62;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 25px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+        .info {
+
+            margin-top: 30px;
+
+            padding: 20px;
+
+            background: #fff0f5;
+
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h2>🍰 Sweet Delights Bakery</h2>
+
+</header>
+
+
+<section class="contact">
+
+    <h1>Contact Us 💌</h1>
+
+    <p>
+        Have a question? We'd love to hear from you!
+    </p>
+
+
+    <form id="contactForm">
+
+        <label>Name</label>
+
+        <input
+            type="text"
+            required
+            placeholder="Your name"
+        >
+
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            required
+            placeholder="Your email"
+        >
+
+
+        <label>Message</label>
+
+        <textarea
+            rows="5"
+            required
+            placeholder="Write your message..."
+        ></textarea>
+
+
+        <button type="submit">
+            Send Message
+        </button>
+
+    </form>
+
+
+    <div class="info">
+
+        <h3>📍 Visit Us</h3>
+
+        <p>Sweet Delights Bakery</p>
+
+        <p>📞 +91 98765 43210</p>
+
+        <p>📧 sweetdelights@example.com</p>
+
+        <p>🕒 9:00 AM – 9:00 PM</p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+document
+    .getElementById("contactForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        alert(
+            "Thank you! We will contact you soon. ❤️"
+        );
+
+        this.reset();
+
+    });
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Sweet Delights Bakery</title>
+
+    <link rel="stylesheet" href="products.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">🍰 Sweet Delights</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart 🛒</a>
+        <a href="checkout.html">Checkout</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+
+<section class="products-section">
+
+    <h1>Our Delicious Products 🍰</h1>
+
+    <div class="filter-buttons">
+        <button onclick="filterProducts('all')">All</button>
+        <button onclick="filterProducts('cakes')">Cakes</button>
+        <button onclick="filterProducts('pastries')">Pastries</button>
+        <button onclick="filterProducts('cookies')">Cookies</button>
+        <button onclick="filterProducts('snacks')">Snacks</button>
+        <button onclick="filterProducts('donuts')">Donuts</button>
+        <button onclick="filterProducts('desserts')">Desserts</button>
+        <button onclick="filterProducts('beverages')">Beverages</button>
+    </div>
+
+
+    <div id="productContainer" class="product-container">
+
+        <div class="product-card cakes">
+            <div class="product-image">🎂</div>
+            <h3>Chocolate Cake</h3>
+            <p>Rich chocolate cake</p>
+            <span>₹450</span>
+            <button onclick="addToCart('Chocolate Cake',450)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card cakes">
+            <div class="product-image">🎂</div>
+            <h3>Black Forest Cake</h3>
+            <p>Chocolate cake with cream</p>
+            <span>₹500</span>
+            <button onclick="addToCart('Black Forest Cake',500)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card cakes">
+            <div class="product-image">🍰</div>
+            <h3>Red Velvet Cake</h3>
+            <p>Soft red velvet cake</p>
+            <span>₹550</span>
+            <button onclick="addToCart('Red Velvet Cake',550)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card pastries">
+            <div class="product-image">🧁</div>
+            <h3>Chocolate Pastry</h3>
+            <p>Fresh chocolate pastry</p>
+            <span>₹100</span>
+            <button onclick="addToCart('Chocolate Pastry',100)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card cookies">
+            <div class="product-image">🍪</div>
+            <h3>Choco Chip Cookies</h3>
+            <p>Crispy chocolate cookies</p>
+            <span>₹80</span>
+            <button onclick="addToCart('Choco Chip Cookies',80)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card snacks">
+            <div class="product-image">🥐</div>
+            <h3>Veg Puff</h3>
+            <p>Fresh crispy veg puff</p>
+            <span>₹40</span>
+            <button onclick="addToCart('Veg Puff',40)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card donuts">
+            <div class="product-image">🍩</div>
+            <h3>Chocolate Donut</h3>
+            <p>Soft chocolate donut</p>
+            <span>₹80</span>
+            <button onclick="addToCart('Chocolate Donut',80)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card desserts">
+            <div class="product-image">🍮</div>
+            <h3>Cheesecake</h3>
+            <p>Creamy delicious cheesecake</p>
+            <span>₹180</span>
+            <button onclick="addToCart('Cheesecake',180)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card beverages">
+            <div class="product-image">🥤</div>
+            <h3>Milkshake</h3>
+            <p>Cold creamy milkshake</p>
+            <span>₹120</span>
+            <button onclick="addToCart('Milkshake',120)">
+                Add to Cart
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+
+<script src="products.js"></script>
+
+</body>
+</html>

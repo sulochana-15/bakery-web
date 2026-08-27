@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Products - Sweet Delights</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header class="admin-header">
+
+        <div>
+            <h1>🍰 Sweet Delights</h1>
+            <p>Product Management</p>
+        </div>
+
+        <a href="admin.html"
+           style="color:white; text-decoration:none;">
+            ← Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- Main -->
+
+    <main class="dashboard">
+
+        <section class="welcome">
+
+            <h2>Manage Products 🍰</h2>
+
+            <p>
+                Add, update and delete bakery products.
+            </p>
+
+        </section>
+
+
+        <!-- Add Product -->
+
+        <section class="stat-card"
+                 style="text-align:left; margin-bottom:30px;">
+
+            <h2>Add New Product</h2>
+
+            <form id="productForm">
+
+                <label>Product Name</label>
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Example: Chocolate Cake"
+                    required
+                    style="width:100%; padding:12px; margin:8px 0 15px;"
+                >
+
+
+                <label>Category</label>
+
+                <select
+                    id="productCategory"
+                    required
+                    style="width:100%; padding:12px; margin:8px 0 15px;"
+                >
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option value="Cakes">
+                        Cakes
+                    </option>
+
+                    <option value="Pastries">
+                        Pastries
+                    </option>
+
+                    <option value="Cookies">
+                        Cookies
+                    </option>
+
+                    <option value="Breads">
+                        Breads & Buns
+                    </option>
+
+                    <option value="Snacks">
+                        Puffs & Snacks
+                    </option>
+
+                    <option value="Donuts">
+                        Donuts & Muffins
+                    </option>
+
+                    <option value="Desserts">
+                        Desserts
+                    </option>
+
+                    <option value="Beverages">
+                        Beverages
+                    </option>
+
+                </select>
+
+
+                <label>Price</label>
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    placeholder="Example: 450"
+                    min="0"
+                    required
+                    style="width:100%; padding:12px; margin:8px 0 15px;"
+                >
+
+
+                <label>Stock</label>
+
+                <input
+                    type="number"
+                    id="productStock"
+                    placeholder="Example: 20"
+                    min="0"
+                    required
+                    style="width:100%; padding:12px; margin:8px 0 15px;"
+                >
+
+
+                <label>Image URL</label>
+
+                <input
+                    type="text"
+                    id="productImage"
+                    placeholder="Enter image URL"
+                    style="width:100%; padding:12px; margin:8px 0 15px;"
+                >
+
+
+                <label>Description</label>
+
+                <textarea
+                    id="productDescription"
+                    rows="4"
+                    placeholder="Enter product description"
+                    style="width:100%; padding:12px; margin:8px 0 15px;"
+                ></textarea>
+
+
+                <button
+                    type="submit"
+                    style="
+                        background:#8b3a62;
+                        color:white;
+                        border:none;
+                        padding:12px 25px;
+                        border-radius:8px;
+                        cursor:pointer;
+                    "
+                >
+                    ➕ Add Product
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Product List -->
+
+        <section>
+
+            <h2>All Products</h2>
+
+            <div id="productContainer"
+                 class="admin-menu"
+                 style="margin-top:20px;">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const API_URL =
+            "http://localhost:5000/api/products";
+
+
+        // Load Products
+
+        async function loadProducts() {
+
+            try {
+
+                const response =
+                    await fetch(API_URL);
+
+                const products =
+                    await response.json();
+
+
+                const container =
+                    document.getElementById(
+                        "productContainer"
+                    );
+
+
+                container.innerHTML = "";
+
+
+                if (!Array.isArray(products) ||
+                    products.length === 0) {
+
+                    container.innerHTML = `
+                        <div class="stat-card">
+                            <h3>No products found 🍰</h3>
+                            <p>Add your first bakery product.</p>
+                        </div>
+                    `;
+
+                    return;
+                }
+
+
+                products.forEach(product => {
+
+                    const card =
+                        document.createElement("div");
+
+                    card.className =
+                        "menu-card";
+
+
+                    card.innerHTML = `
+
+                        <div style="font-size:40px;">
+                            🍰
+                        </div>
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+                        <p>
+                            Category:
+                            ${product.category}
+                        </p>
+
+                        <p>
+                            Price:
+                            ₹${product.price}
+                        </p>
+
+                        <p>
+                            Stock:
+                            ${product.stock}
+                        </p>
+
+                        <p>
+                            ${product.description || ""}
+                        </p>
+
+
+                        <div style="margin-top:15px;">
+
+                            <button
+                                onclick="editProduct('${product._id}')"
+                                style="
+                                    background:#8b3a62;
+                                    color:white;
+                                    border:none;
+                                    padding:8px 15px;
+                                    border-radius:6px;
+                                    cursor:pointer;
+                                    margin-right:5px;
+                                "
+                            >
+                                ✏️ Edit
+                            </button>
+
+
+                            <button
+                                onclick="deleteProduct('${product._id}')"
+                                style="
+                                    background:#c0392b;
+                                    color:white;
+                                    border:none;
+                                    padding:8px 15px;
+                                    border-radius:6px;
+                                    cursor:pointer;
+                                "
+                            >
+                                🗑️ Delete
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(card);
+
+                });
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error loading products:",
+                    error
+                );
+
+                alert(
+                    "Backend is not connected. Start your server."
+                );
+
+            }
+
+        }
+
+
+
+        // Add Product
+
+        document
+            .getElementById("productForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const product = {
+
+                        name:
+                            document.getElementById(
+                                "productName"
+                            ).value,
+
+                        category:
+                            document.getElementById(
+                                "productCategory"
+                            ).value,
+
+                        price:
+                            Number(
+                                document.getElementById(
+                                    "productPrice"
+                                ).value
+                            ),
+
+                        stock:
+                            Number(
+                                document.getElementById(
+                                    "productStock"
+                                ).value
+                            ),
+
+                        image:
+                            document.getElementById(
+                                "productImage"
+                            ).value,
+
+                        description:
+                            document.getElementById(
+                                "productDescription"
+                            ).value
+
+                    };
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                API_URL,
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body:
+                                        JSON.stringify(product)
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                data.message ||
+                                "Failed to add product"
+                            );
+
+                        }
+
+
+                        alert(
+                            "Product added successfully! 🍰"
+                        );
+
+
+                        document
+                            .getElementById("productForm")
+                            .reset();
+
+
+                        loadProducts();
+
+
+                    } catch (error) {
+
+                        console.error(error);
+
+                        alert(
+                            "Error: " +
+                            error.message
+                        );
+
+                    }
+
+                }
+            );
+
+
+
+        // Delete Product
+
+        async function deleteProduct(id) {
+
+            const confirmDelete =
+                confirm(
+                    "Are you sure you want to delete this product?"
+                );
+
+
+            if (!confirmDelete) {
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/${id}`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Delete failed"
+                    );
+
+                }
+
+
+                alert(
+                    "Product deleted successfully 🗑️"
+                );
+
+
+                loadProducts();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Error deleting product"
+                );
+
+            }
+
+        }
+
+
+
+        // Edit Product
+
+        async function editProduct(id) {
+
+            const newName =
+                prompt(
+                    "Enter new product name:"
+                );
+
+
+            if (!newName) {
+                return;
+            }
+
+
+            const newPrice =
+                prompt(
+                    "Enter new price:"
+                );
+
+
+            if (!newPrice) {
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/${id}`,
+                        {
+                            method: "PUT",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                name: newName,
+
+                                price:
+                                    Number(newPrice)
+
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Update failed"
+                    );
+
+                }
+
+
+                alert(
+                    "Product updated successfully ✏️"
+                );
+
+
+                loadProducts();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Error updating product"
+                );
+
+            }
+
+        }
+
+
+
+        // Start
+
+        loadProducts();
+
+    </script>
+
+</body>
+
+</html>
